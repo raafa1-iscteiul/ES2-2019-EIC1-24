@@ -40,6 +40,9 @@
 				<groupId>org.jacoco</groupId>
 				<artifactId>jacoco-maven-plugin</artifactId>
 				<version>0.8.5</version>
+				<configuration>
+					<argLine>@{argLine}</argLine>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>
