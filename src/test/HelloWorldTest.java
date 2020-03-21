@@ -1,4 +1,7 @@
+package test;
 import org.junit.jupiter.api.Test;
+
+import main.HelloWorld;
 
 class HelloWorldTest {
 
