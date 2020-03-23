@@ -1,4 +1,4 @@
-package compile;
+package main.java;
 
 public class HelloWorld {
 

@@ -1,13 +1,13 @@
-package test;
+package test.java;
 
 import org.junit.jupiter.api.Test;
 
-import compile.HelloWorld;
+import main.java.HelloWorld;
 
 class HelloWorldTest {
 
 	@Test
-	void testMain() {
+	void testSayHiTo() {
 		HelloWorld.sayHiTo("Ricardo");
 	}
 
