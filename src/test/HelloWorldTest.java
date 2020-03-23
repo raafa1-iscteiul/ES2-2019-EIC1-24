@@ -2,7 +2,7 @@ package test;
 
 import org.junit.jupiter.api.Test;
 
-import main.HelloWorld;
+import compile.HelloWorld;
 
 class HelloWorldTest {
 
