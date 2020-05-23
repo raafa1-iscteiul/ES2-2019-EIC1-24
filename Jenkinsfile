@@ -41,7 +41,7 @@ stage ('Runing Wordpress Container to test built Docker Image'){
     }
 
 stage ('Runing MySQL Container to test built Docker Image'){
-    powershell "docker run -dit --name ${container_mysql} -e MYSQL_ROOT_PASSWORD=root MYSQL_DATABASE=wordpress MYSQL_USER=wordpress MYSQL_PASSWORD=wordpress ${imagename_mysql}"
+    powershell "docker run -dit --name ${container_mysql} -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=wordpress -e MYSQL_USER=wordpress -e MYSQL_PASSWORD=wordpress ${imagename_mysql}"
     }
           
     
