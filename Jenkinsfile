@@ -1,31 +1,38 @@
-pipeline {
-  agent any
-  stages {
-    stage('Compile') {
-      steps {
-        sh 'mvn clean compile -DskipTests'
-      }
+def dockeruser = "es2ei24"
+def imagename = "ubuntu:16"
+def container = "apache2"
+node {
+   echo 'Building Apache Docker Image'
+
+stage('Git Checkout') {
+    git 'https://github.com/jvpreis/ESII'
+    }
+    
+stage('Build Docker Image'){
+     powershell "docker build -t  ${imagename} ."
+    }
+    
+stage('Stop Existing Container'){
+     powershell "docker stop ${container}"
+    }
+    
+stage('Remove Existing Container'){
+     powershell "docker rm ${container}"
+    }
+    
+stage ('Runing Container to test built Docker Image'){
+    powershell "docker run -dit --name ${container} -p 80:80 ${imagename}"
+    }
+    
+stage('Tag Docker Image'){
+    powershell "docker tag ${imagename} ${env.dockeruser}/ubuntu:16.04"
     }
 
-    stage('Run tests') {
-      steps {
-        sh 'mvn test'
-        junit 'target/surefire-reports/*.xml'
-      }
+stage('Docker Login and Push Image'){
+    withCredentials([usernamePassword(credentialsId: 'docker-hub-credentials', passwordVariable: 'dockerpasswd', usernameVariable: 'dockeruser')]) {
+    powershell "docker login -u ${dockeruser} -p ${dockerpasswd}"
+    }
+    powershell "docker push ${dockeruser}/ubuntu:16.04"
     }
 
-    stage('Publish coverage') {
-      steps {
-        sh 'mvn jacoco:prepare-agent test'
-        jacoco(classPattern: '**/classes', sourcePattern: '**/src/main/java', sourceInclusionPattern: '**/*.java,**/*.groovy,**/*.kt,**/*.kts', execPattern: '**/**.exec')
-      }
-    }
-
-    stage('Generate javadoc') {
-      steps {
-        sh 'mvn javadoc:javadoc'
-      }
-    }
-
-  }
 }
