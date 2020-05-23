@@ -1,6 +1,6 @@
 def dockeruser = "es2ei24"
-def imagename = "ubuntu:16"
-def container = "apache2"
+def imagename = "wordpress:5.4.1"
+def container = "docker_wordpress_1"
 node {
    echo 'Building Apache Docker Image'
 
