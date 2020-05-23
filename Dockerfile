@@ -1,10 +1,12 @@
 # Source Image name
-from ubuntu:16.04
-# Mainter Name
-maintainer Amar Singh
-# Command to update and install Apache packages
-RUN apt-get update && apt-get install apache2 -y
+from es2ei24/wordpress
+from es2ei24/mysql
+# Maintainer Name
+maintainer ES2-2019-EIC1-24
+# Command to update and install containers
+RUN docker run -dit --name ${container_wordpress} -p 80:80 ${imagename_wordpress}
+RUN docker run -dit --name ${container_mysql} -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=wordpress -e MYSQL_USER=wordpress -e MYSQL_PASSWORD=wordpress ${imagename_mysql}
 # open port 
 EXPOSE 80
-# Command to run Apache server in background
-CMD /usr/sbin/apache2ctl -D FOREGROUND
+
+
