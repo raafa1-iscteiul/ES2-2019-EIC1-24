@@ -1,6 +1,7 @@
 def dockeruser = "es2ei24"
 def imagename = "wordpress:5.4.1"
 def container = "docker_wordpress_1"
+def credentials = "Docker Hub Credential"
 node {
    echo 'Building Apache Docker Image'
 
@@ -29,7 +30,7 @@ stage('Tag Docker Image'){
     }
 
 stage('Docker Login and Push Image'){
-    withCredentials([usernamePassword(credentialsId: 'docker-hub-credentials', passwordVariable: 'dockerpasswd', usernameVariable: 'dockeruser')]) {
+    withCredentials([usernamePassword(credentialsId: ${credentials}, passwordVariable: 'dockerpasswd', usernameVariable: 'dockeruser')]) {
     powershell "docker login -u ${dockeruser} -p ${dockerpasswd}"
     }
     powershell "docker push ${dockeruser}/${imagename}"
