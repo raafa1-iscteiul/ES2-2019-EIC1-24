@@ -50,7 +50,7 @@ stage('Tag Wordpress Docker Image'){
     }
 
 stage('Tag MySQL Docker Image'){
-    powershell "docker tag ${container_mysql} ${env.dockeruser}/${imagename_mysql}"
+    powershell "docker tag ${container_mysql} ${env.dockeruser}/${imagename_mysql}:5.7"
     }
 
 stage('Docker Login and Push Image'){
