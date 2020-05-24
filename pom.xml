@@ -58,8 +58,7 @@
 						<archive>
 						  <manifest>
 						    <addClasspath>true</addClasspath>
-						    <classpathPrefix>lib/</classpathPrefix>
-						    <mainClass>com.mypackage.MyClass</mainClass>
+						    <mainClass>src.main.java.HelloWorld</mainClass>
 						  </manifest>
 						</archive>
 					      </configuration>
