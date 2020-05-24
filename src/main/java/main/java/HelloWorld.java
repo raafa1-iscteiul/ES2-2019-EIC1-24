@@ -9,5 +9,9 @@ public class HelloWorld {
 	public static void sayHiTo(String name) {
 		System.out.println("Olá " + name.trim() + "!");
 	}
+	
+	public static void main(String [] args){
+		sayHiTo("professor");
+	}
 
 }
