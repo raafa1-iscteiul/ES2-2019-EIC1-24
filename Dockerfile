@@ -1,5 +1,5 @@
 # Source Image name
-from es2ei24/wordpress
+from es2ei24/wordpress:5.4.1
 from es2ei24/mysql
 # Maintainer Name
 maintainer ES2-2019-EIC1-24
