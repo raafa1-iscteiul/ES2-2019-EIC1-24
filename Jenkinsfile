@@ -11,6 +11,22 @@ node {
 stage('Git Checkout') {
     git 'https://github.com/raafa1-iscteiul/ES2-2019-EIC1-24.git'
     }
+   
+stage('Stop Existing Wordpress Container'){
+  powershell "docker stop es2-${container_wordpress}"
+ }
+
+stage('Stop Existing MySQL Container'){
+    powershell "docker stop es2-${container_mysql}"
+    }   
+
+stage('Remove Existing Wordpress Container'){
+     powershell "docker rm es2-${container_wordpress}"
+    }
+
+stage('Remove Existing Wordpress MySQL'){
+     powershell "docker rm es2-${container_mysql}"
+    }
     
 stage('Build Docker Wordpress Image'){
      powershell "docker-compose up -d"
