@@ -58,7 +58,7 @@
 						<archive>
 						  <manifest>
 						    <addClasspath>true</addClasspath>
-						    <mainClass>main.java.main.java.HelloWorld</mainClass>
+						    <mainClass>src.main.java.main.java.HelloWorld.java</mainClass>
 						  </manifest>
 						</archive>
 					      </configuration>
