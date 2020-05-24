@@ -13,44 +13,7 @@ stage('Git Checkout') {
     }
     
 stage('Build Docker Wordpress Image'){
-     powershell "docker build -t  ${imagename_wordpress} ."
-    }
-
-stage('Build Docker MySQL Image'){
-     powershell "docker build -t  ${imagename_mysql} ."
-    }
-
-stage('Stop Existing Wordpress Container'){
-     powershell "docker stop ${container_wordpress}"
-    }
-
-stage('Stop Existing MySQL Container'){
-    powershell "docker stop ${container_mysql}"
-    }   
-    
-stage('Remove Existing Wordpress Container'){
-     powershell "docker rm ${container_wordpress}"
-    }
-
-stage('Remove Existing Wordpress MySQL'){
-     powershell "docker rm ${container_mysql}"
-    }
-    
-stage ('Runing Wordpress Container to test built Docker Image'){
-    powershell "docker run -dit --name ${container_wordpress} -p 80:80 ${imagename_wordpress}"
-    }
-
-stage ('Runing MySQL Container to test built Docker Image'){
-    powershell "docker run -dit --name ${container_mysql} -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=wordpress -e MYSQL_USER=wordpress -e MYSQL_PASSWORD=wordpress ${imagename_mysql}"
-    }
-          
-    
-stage('Tag Wordpress Docker Image'){
-    powershell "docker tag ${imagename_wordpress} ${env.dockeruser}/${imagename_wordpress}"
-    }
-
-stage('Tag MySQL Docker Image'){
-    powershell "docker tag ${imagename_mysql} ${env.dockeruser}/${imagename_mysql}"
+     powershell "docker-compose up -d"
     }
 
 stage('Docker Login and Push Image'){
