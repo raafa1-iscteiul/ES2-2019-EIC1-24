@@ -1,8 +1,8 @@
 def dockeruser = "es2ei24"
-def imagename_wordpress = "wordpress:5.4.1"
+def imagename_wordpress = "wordpress"
 def container_wordpress = "docker_wordpress_1"
 
-def imagename_mysql = "mysql:5.7"
+def imagename_mysql = "mysql"
 def container_mysql = "docker_db_1"
 
 node {
