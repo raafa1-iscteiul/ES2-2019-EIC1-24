@@ -16,15 +16,15 @@ stage('Git Checkout') {
     }
 
 stage('Stop and Remove Wordpress Container'){
-  powershell "docker stop es2-${container_wordpress} || true && docker rm es2-${container_wordpress} || true"
+  powershell "docker stop es2-2019-eic1-24-${container_wordpress} || true && docker rm es2-2019-eic1-24-${container_wordpress} || true"
  }
    
 stage('Stop and Remove MySQL Container'){
-    powershell "docker stop es2-${container_mysql} || true && docker rm es2-${container_mysql} || true"
+    powershell "docker stop es2-2019-eic1-24-${container_mysql} || true && docker rm es2-2019-eic1-24-${container_mysql} || true"
     }   
 
 stage('Stop and Remove Maven Container'){
-    powershell "docker rm es2-${container_mvn} || true"
+    powershell "docker rm es2-2019-eic1-24-${container_mvn} || true"
     } 
    
 stage('Build Maven Docker Image'){
@@ -32,7 +32,7 @@ stage('Build Maven Docker Image'){
     }
 
 stage('Run Maven Docker Image'){
-   powershell "docker run --name es2-${container_mvn} -d ${imagename_mvn} ."
+   powershell "docker run --name es2-2019-eic1-24-${container_mvn} -d ${imagename_mvn} ."
     }
    
 stage('Build Docker Wordpress & MySQL Image'){
@@ -40,23 +40,23 @@ stage('Build Docker Wordpress & MySQL Image'){
     }
  
 stage('Tag Maven Docker Image'){
-    powershell "docker tag ${imagename_mvn} ${env.dockeruser}/es2-${container_mvn}"
+    powershell "docker tag ${imagename_mvn} ${env.dockeruser}/es2-2019-eic1-24-${container_mvn}"
     }
    
 stage('Tag Wordpress Docker Image'){
-    powershell "docker tag ${imagename_wordpress} ${env.dockeruser}/es2-${container_wordpress}"
+    powershell "docker tag ${imagename_wordpress} ${env.dockeruser}/es2-2019-eic1-24-${container_wordpress}"
     }
 
 stage('Tag MySQL Docker Image'){
-    powershell "docker tag ${imagename_mysql} ${env.dockeruser}/es2-${container_mysql}"
+    powershell "docker tag ${imagename_mysql} ${env.dockeruser}/es2-2019-eic1-24-${container_mysql}"
     }
    
 stage('Docker Login and Push Image'){
     withCredentials([usernamePassword(credentialsId: 'docker-hub-credentials', passwordVariable: 'dockerpasswd', usernameVariable: 'dockeruser')]) {
     powershell "docker login -u ${dockeruser} -p ${dockerpasswd}"
     }
-    powershell "docker push ${dockeruser}/es2-${container_mvn}"
-    powershell "docker push ${dockeruser}/es2-${container_wordpress}"
-    powershell "docker push ${dockeruser}/es2-${container_mysql}"
+    powershell "docker push ${dockeruser}/es2-2019-eic1-24-${container_mvn}"
+    powershell "docker push ${dockeruser}/es2-2019-eic1-24-${container_wordpress}"
+    powershell "docker push ${dockeruser}/es2-2019-eic1-24-${container_mysql}"
     }   
 }
