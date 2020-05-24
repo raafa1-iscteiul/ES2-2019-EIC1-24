@@ -19,10 +19,6 @@ stage('Build Docker Image'){
      powershell "docker build -t  ${imagename_mvn} ."
     }
    
-stage('Stop Existing Maven Container'){
-  powershell "docker stop es2-${container_mvn}"
- }
-   
 stage('Stop Existing Wordpress Container'){
   powershell "docker stop es2-${container_wordpress}"
  }
