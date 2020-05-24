@@ -20,7 +20,7 @@ stage('Build Docker Image'){
     }
 
 stage('Run Docker Image'){
-   powershell "docker run --name ${container_mvn} ${imagename_mvn} ."
+   powershell "docker run --name ${container_mvn} -d ${imagename_mvn} ."
     }
    
 stage('Build Docker Wordpress Image'){
