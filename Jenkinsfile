@@ -24,7 +24,7 @@ stage('Stop and Remove MySQL Container'){
     }   
 
 stage('Stop and Remove Maven Container'){
-    powershell "docker rm es2-2019-eic1-24-${container_mvn} || true"
+    powershell "docker stop es2-2019-eic1-24-${container_mvn} || true && docker rm es2-2019-eic1-24-${container_mvn} || true"
     } 
    
 stage('Build Maven Docker Image'){
