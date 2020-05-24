@@ -32,7 +32,7 @@ stage('Build Maven Docker Image'){
     }
 
 stage('Run Maven Docker Image'){
-   powershell "docker run --name ${container_mvn} -d ${imagename_mvn} ."
+   powershell "docker run --name es2-${container_mvn} -d ${imagename_mvn} ."
     }
    
 stage('Build Docker Wordpress & MySQL Image'){
