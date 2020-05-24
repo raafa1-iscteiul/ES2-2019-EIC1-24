@@ -14,6 +14,18 @@ node {
 stage('Git Checkout') {
     git 'https://github.com/raafa1-iscteiul/ES2-2019-EIC1-24.git'
     }
+
+stage('Stop and Remove Wordpress Container'){
+  powershell "docker stop es2-${container_wordpress} || true && docker rm es2-${container_wordpress} || true"
+ }
+   
+stage('Stop and Remove MySQL Container'){
+    powershell "docker stop es2-${container_mysql} || true && docker rm es2-${container_mysql} || true"
+    }   
+
+stage('Stop and Remove Maven Container'){
+    powershell "docker stop es2-${container_mvn} || true && docker rm es2-${container_mvn} || true"
+    } 
    
 stage('Build Maven Docker Image'){
      powershell "docker build -t  ${imagename_mvn} ."
@@ -46,22 +58,5 @@ stage('Docker Login and Push Image'){
     powershell "docker push ${dockeruser}/es2-${container_mvn}"
     powershell "docker push ${dockeruser}/es2-${container_wordpress}"
     powershell "docker push ${dockeruser}/es2-${container_mysql}"
-
-    }
-
-stage('Stop Wordpress Container'){
-  powershell "docker stop es2-${container_wordpress}"
- }
-   
-stage('Stop MySQL Container'){
-    powershell "docker stop es2-${container_mysql}"
     }   
-
-stage('Remove Wordpress Container'){
-     powershell "docker rm es2-${container_wordpress}"
-    }
-
-stage('Remove MySQL Container'){
-     powershell "docker rm es2-${container_mysql}"
-    }
 }
