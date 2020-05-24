@@ -12,9 +12,6 @@ public class HelloWorld {
 	
 	public static void main(String [] args){
 		sayHiTo("professor");
-		while(true){
-			
-		}
 	}
 
 }
