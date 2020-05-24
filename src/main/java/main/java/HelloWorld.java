@@ -12,6 +12,7 @@ public class HelloWorld {
 	
 	public static void main(String [] args){
 		sayHiTo("professor");
+		sleep(5000);
 	}
 
 }
