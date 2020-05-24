@@ -14,7 +14,7 @@ public class HelloWorld {
 		sayHiTo("professor");
 		while(true){
 			
-		};
+		}
 	}
 
 }
