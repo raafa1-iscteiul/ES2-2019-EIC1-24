@@ -17,11 +17,11 @@ stage('Build Docker Wordpress Image'){
     }
    
 stage('Tag Wordpress Docker Image'){
-    powershell "docker tag ${imagename_wordpress} ${env.dockeruser}/${imagename_wordpress}"
+    powershell "docker tag ${imagename_wordpress} ${env.dockeruser}/es2-${container_wordpress}"
     }
 
 stage('Tag MySQL Docker Image'){
-    powershell "docker tag ${imagename_mysql} ${env.dockeruser}/${imagename_mysql}"
+    powershell "docker tag ${imagename_mysql} ${env.dockeruser}/es2-${container_mysql}"
     }
    
 stage('Docker Login and Push Image'){
