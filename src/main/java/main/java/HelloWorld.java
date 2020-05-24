@@ -12,7 +12,12 @@ public class HelloWorld {
 	
 	public static void main(String [] args){
 		sayHiTo("professor");
-		sleep(5000);
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 }
