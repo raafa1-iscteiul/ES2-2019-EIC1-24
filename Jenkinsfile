@@ -20,8 +20,8 @@ stage('Docker Login and Push Image'){
     withCredentials([usernamePassword(credentialsId: 'docker-hub-credentials', passwordVariable: 'dockerpasswd', usernameVariable: 'dockeruser')]) {
     powershell "docker login -u ${dockeruser} -p ${dockerpasswd}"
     }
-    powershell "docker push ${dockeruser}/${imagename_wordpress}"
-    powershell "docker push ${dockeruser}/${imagename_mysql}"
+    powershell "docker push ${dockeruser}/ES2-Docker${imagename_wordpress}"
+    powershell "docker push ${dockeruser}/ES2-Docker${imagename_mysql}"
 
     }
 
