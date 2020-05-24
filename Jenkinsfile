@@ -18,6 +18,10 @@ stage('Git Checkout') {
 stage('Build Docker Image'){
      powershell "docker build -t  ${imagename_mvn} ."
     }
+
+stage('Run Docker Image'){
+   powershell "docker run --name ${container_mvn} ${imagename_mvn} ."
+    }
    
 stage('Stop Existing Wordpress Container'){
   powershell "docker stop es2-${container_wordpress}"
@@ -26,10 +30,6 @@ stage('Stop Existing Wordpress Container'){
 stage('Stop Existing MySQL Container'){
     powershell "docker stop es2-${container_mysql}"
     }   
-
-stage('Remove Existing Maven Container'){
-     powershell "docker rm ${container_mvn}"
-    }
 
 stage('Remove Existing Wordpress Container'){
      powershell "docker rm es2-${container_wordpress}"
@@ -64,7 +64,5 @@ stage('Docker Login and Push Image'){
     powershell "docker push ${dockeruser}/es2-${container_mysql}"
 
     }
-
-
 
 }
