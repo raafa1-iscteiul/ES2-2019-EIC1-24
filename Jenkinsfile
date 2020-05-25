@@ -16,15 +16,15 @@ stage('Git Checkout') {
     }
 
 stage('Stop and Remove Wordpress Container'){
-  powershell "docker stop es2-2019-eic1-24-${container_wordpress} || true && docker rm es2-2019-eic1-24-${container_wordpress} || true"
+  powershell "docker stop es2-2019-eic1-24-${container_wordpress} -o true -a docker rm es2-2019-eic1-24-${container_wordpress} -o true"
  }
    
 stage('Stop and Remove MySQL Container'){
-    powershell "docker stop es2-2019-eic1-24-${container_mysql} || true && docker rm es2-2019-eic1-24-${container_mysql} || true"
+    powershell "docker stop es2-2019-eic1-24-${container_mysql} -o true -a docker rm es2-2019-eic1-24-${container_mysql} -o true"
     }   
 
 stage('Stop and Remove Maven Container'){
-    powershell "docker rm es2-2019-eic1-24-${container_mvn} || true"
+    powershell "docker rm es2-2019-eic1-24-${container_mvn} -o true"
     } 
    
 stage('Build Maven Docker Image'){
