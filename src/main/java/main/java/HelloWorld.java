@@ -14,8 +14,6 @@ public class HelloWorld {
 	
 	public static void main(String [] args){
 		sayHiTo("professor");
-		//CovidSciDiscoveries.readPdfFile("biology-09-00094.pdf");
-		CovidSciDiscoveries.readScientificArticles();
+		System.out.println(CovidSciDiscoveries.getCovidSciDicoveriesTable());
 	}
-
 }
