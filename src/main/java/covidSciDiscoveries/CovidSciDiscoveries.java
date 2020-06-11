@@ -13,6 +13,11 @@ import pl.edu.icm.cermine.metadata.model.DocumentMetadata;
 public class CovidSciDiscoveries {
 
 	private static ArrayList<ScientificArticle> articleList = new ArrayList<ScientificArticle>();
+	
+	public static String getCovidSciDicoveriesTable() {
+		readScientificArticles();
+		return createHTMLTable();
+	}
 
 	private static void readPdfFile(File file) {
 		try {
@@ -32,7 +37,7 @@ public class CovidSciDiscoveries {
 		}
 	}
 
-	public static void readScientificArticles() {
+	private static void readScientificArticles() {
 		ClassLoader classLoader = CovidSciDiscoveries.class.getClassLoader();
 		URL resource = classLoader.getResource("ScientificArticles");
 		File f = new File(resource.getFile());
@@ -40,10 +45,47 @@ public class CovidSciDiscoveries {
 		for (File file : listOfFiles) {
 			readPdfFile(file);
 		}
-		//testing
-		for(ScientificArticle article: articleList) {
-			System.out.println(article.toString());
-		}
 	}
 
+	private static String createHTMLTable() {
+		String html = "<head>\r\n" + 
+				"<style>\r\n" + 
+				"table {\r\n" + 
+				"  font-family: arial, sans-serif;\r\n" + 
+				"  border-collapse: collapse;\r\n" + 
+				"  width: 100%;\r\n" + 
+				"}\r\n" + 
+				"\r\n" + 
+				"td, th {\r\n" + 
+				"  border: 1px solid #dddddd;\r\n" + 
+				"  text-align: left;\r\n" + 
+				"  padding: 8px;\r\n" + 
+				"}\r\n" + 
+				"\r\n" + 
+				"tr:nth-child(even) {\r\n" + 
+				"  background-color: #dddddd;\r\n" + 
+				"}\r\n" + 
+				"</style>\r\n" + 
+				"</head>" +
+				"<body>" +
+				"<h2>Covid19 Scientific Discoveries</h2>" +
+				"<table>" +
+				"<tr>\r\n" + 
+				"<th>Article Title</th>\r\n" + 
+				"<th>Journal name</th>\r\n" + 
+				"<th>Publication year</th>\r\n" +
+				"<th>Authors</th>\r\n" + 
+				"</tr>";
+		for(ScientificArticle article: articleList) {
+			html += "<tr>\r\n" + 
+					"<th <a href=\"" + article.getArticleHyperlink() + "\">" + article.getArticleTitle() + "</a></th>\r\n" + 
+					"<th>" + article.getJounalName() + "</th>\r\n" + 
+					"<th>"+ article.getPublicationYear() + "</th>\r\n" + 
+					"<th>" + article.getAuthors() + "</th>\r\n" +
+					"</tr>";
+		}
+		html+= "</table>\r\n" + 
+				"</body>";
+		return html;
+	}
 }
