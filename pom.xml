@@ -18,7 +18,19 @@
 			<version>0.8.5</version>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>pl.edu.icm.cermine</groupId>
+			<artifactId>cermine-impl</artifactId>
+			<version>1.13</version>
+		</dependency>
 	</dependencies>
+	<repositories>
+		<repository>
+			<id>icm</id>
+			<name>ICM repository</name>
+			<url>http://maven.icm.edu.pl/artifactory/repo</url>
+		</repository>
+	</repositories>
 	<build>
 		<directory>${project.basedir}/target</directory>
 		<outputDirectory>${project.build.directory}/classes</outputDirectory>
