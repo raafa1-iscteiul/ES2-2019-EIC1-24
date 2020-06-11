@@ -1,5 +1,7 @@
 package main.java;
 
+import covidSciDiscoveries.CovidSciDiscoveries;
+
 public class HelloWorld {
 
 	/** Cumprimenta uma pessoa.
@@ -12,12 +14,8 @@ public class HelloWorld {
 	
 	public static void main(String [] args){
 		sayHiTo("professor");
-		try {
-			Thread.sleep(5000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		//CovidSciDiscoveries.readPdfFile("biology-09-00094.pdf");
+		CovidSciDiscoveries.readScientificArticles();
 	}
 
 }
