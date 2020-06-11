@@ -42,8 +42,16 @@ public class ScientificArticle {
 		this.publicationYear = publicationYear;
 	}
 
-	public ArrayList<String> getAuthors() {
-		return authorNames;
+	public String getAuthors() {
+		String names = "";
+		for(String author: authorNames) {
+			if (authorNames.get(authorNames.size() - 1 ).equals(author)){
+				names += author;
+			}else {
+				names += author + ", ";
+			}
+		}
+		return names;
 	}
 
 	public void setAuthors(ArrayList<String> authors) {
